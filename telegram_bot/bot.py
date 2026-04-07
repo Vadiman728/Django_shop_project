@@ -1,16 +1,24 @@
 import asyncio
 import logging
+import os
+import sys
+
+
+# Настройка бота для работы с моделями django
+app_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if app_root not in sys.path:
+    sys.path.insert(0, app_root)
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
+
+import django
+django.setup()
+
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
 from aiogram.enums import ParseMode
 from decouple import config
-import os
-import django
-
-# Настройка бота для работы с моделями django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
-django.setup()
 
 logging.basicConfig(
     level=logging.INFO,
