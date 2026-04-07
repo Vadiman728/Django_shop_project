@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-#SECRET_KEY = 'django-insecure-35@kyke(hiyo*6*@jjxjhs2*-#f@c@bu1=ws2k-2fsh9k3rw1t'
+
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
+    'telegram_bot',
 ]
 
 MIDDLEWARE = [
@@ -107,6 +108,13 @@ DATABASES = {
     }
 }
 
+#DATABASES = {
+#    'default':{
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3'
+#    }
+#}
+
 
 
 # Password validation
@@ -170,3 +178,10 @@ SESSION_COOKIE_NAME = 'sessionid'
 
 # Доверенные источники для CSRF
 CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default = '', cast=Csv())
+
+# TELEGRAM _ BOT
+TELEGRAM_BOT_TOKEN = config('TELEGRAM_BOT_TOKEN', default='')
+TELEGRAM_BOT_USERNAME = config('TELEGRAM_BOT_USERNAME', default='')
+TELEGRAM_ADMIN_IDS = config('TELEGRAM_ADMIN_IDS', default='', cast=Csv())
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
